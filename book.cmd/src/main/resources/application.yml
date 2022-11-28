@@ -1,0 +1,31 @@
+server:
+  port: 5000
+  servlet:
+    context-path: "/hotel-book"
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: myStays
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  application:
+    name: HOTEL-BOOK-CMD
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    status-page-url-path: /actuator/info
+    health-check-url-path: /actuator/health
+    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${eureka.service-url.default}
+
