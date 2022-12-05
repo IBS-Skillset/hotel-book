@@ -1,8 +1,9 @@
 package com.happystays.book.cmd.infrastructure;
 
-import com.happystay.cqrs.core.commands.BaseCommand;
-import com.happystay.cqrs.core.commands.CommandHandlerMethod;
-import com.happystay.cqrs.core.infrastucture.CommandDispatcher;
+
+import com.happystays.cqrs.core.commands.BaseCommand;
+import com.happystays.cqrs.core.commands.CommandHandlerMethod;
+import com.happystays.cqrs.core.infrastucture.CommandDispatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
