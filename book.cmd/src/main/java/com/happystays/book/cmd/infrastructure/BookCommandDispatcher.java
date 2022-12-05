@@ -1,15 +1,17 @@
 package com.happystays.book.cmd.infrastructure;
 
-
 import com.happystays.cqrs.core.commands.BaseCommand;
 import com.happystays.cqrs.core.commands.CommandHandlerMethod;
+import com.happystays.cqrs.core.dto.BookResponse;
 import com.happystays.cqrs.core.infrastucture.CommandDispatcher;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Objects;
+
 
 @Service
 public class BookCommandDispatcher implements CommandDispatcher {
@@ -24,16 +26,16 @@ public class BookCommandDispatcher implements CommandDispatcher {
     }
 
     @Override
-    public void send(BaseCommand command) {
+    public BookResponse send(BaseCommand command) {
         var handlers = routes.get(command.getClass());
-        if (handlers == null || handlers.size() == 0) {
+        if (Objects.isNull(handlers) || handlers.isEmpty()) {
             throw new RuntimeException("No command handler was registered");
         }
         if (handlers.size() > 1) {
             throw new RuntimeException("Cannot send command to more than one handler");
         }
 
-        handlers.get(0).handle(command);
+        return handlers.get(0).handle(command);
 
 
     }
