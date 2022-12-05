@@ -1,6 +1,6 @@
 package com.happystays.book.query.api.dto;
 
-import com.happystays.book.common.dto.BaseResponse;
+import com.happystays.cqrs.core.dto.BaseResponse;
 import com.happystays.book.query.domain.MyTripsResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;

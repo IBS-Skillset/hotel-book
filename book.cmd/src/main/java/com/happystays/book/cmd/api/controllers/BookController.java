@@ -1,9 +1,9 @@
 package com.happystays.book.cmd.api.controllers;
 
+import com.happystays.cqrs.core.dto.BookResponse;
 import com.happystays.cqrs.core.infrastucture.CommandDispatcher;
 import com.happystays.book.cmd.api.commands.BookCommand;
-import com.happystays.book.cmd.api.dto.BookResponse;
-import com.happystays.book.common.dto.BaseResponse;
+import com.happystays.cqrs.core.dto.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,8 +28,9 @@ public class BookController {
         var id = UUID.randomUUID().toString();
         command.setId(id);
         try {
-            commandDispatcher.send(command);
-            return new ResponseEntity<>(new BookResponse("Hotel booked successfully",id), HttpStatus.CREATED);
+            BookResponse bookResponse = commandDispatcher.send(command);
+            bookResponse.setId(id);
+            return new ResponseEntity<>(bookResponse, HttpStatus.CREATED);
 
         } catch (IllegalStateException  e) {
             log.warn("Bad request", e.getMessage());

@@ -1,19 +1,25 @@
 package com.happystays.book.cmd.api.commands;
 
 import com.happystays.cqrs.core.commands.BaseCommand;
+import com.happystays.cqrs.core.dto.CancellationInfo;
+import com.happystays.cqrs.core.dto.PaymentInfo;
+import com.happystays.cqrs.core.dto.UserInfo;
 import lombok.Data;
 
 @Data
 public class BookCommand extends BaseCommand {
-    private int numberOfRooms;
+    private String languageCode;
+    private String hotelCode;
+    private String countryCode;
     private String ratePlanId;
+    private int numberOfRooms;
     private int guestCount;
     private String startDate;
     private String endDate;
     private PaymentInfo paymentInfo;
-    private String hotelCode;
     private UserInfo userInfo;
-    private CancellationInfo cancellationInfo;
     private boolean breakfastIncluded;
     private String hotelPhone;
+    private double nightlyPrice;
+    private CancellationInfo cancellationInfo;
 }
