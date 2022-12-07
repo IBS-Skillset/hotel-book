@@ -1,6 +1,6 @@
 package com.happystays.book.cmd;
 
-import com.happystay.cqrs.core.infrastucture.CommandDispatcher;
+import com.happystays.cqrs.core.infrastucture.CommandDispatcher;
 import com.happystays.book.cmd.api.commands.BookCommand;
 import com.happystays.book.cmd.api.commands.CommandHandler;
 import org.springframework.beans.factory.annotation.Autowired;

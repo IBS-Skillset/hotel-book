@@ -1,6 +1,6 @@
 package com.happystays.book.cmd.api.commands;
 
-import com.happystay.cqrs.core.commands.BaseCommand;
+import com.happystays.cqrs.core.commands.BaseCommand;
 import lombok.Data;
 
 @Data
