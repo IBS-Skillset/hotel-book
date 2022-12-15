@@ -13,6 +13,7 @@ import java.util.Date;
 @Entity
 public class HotelSegment {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int hotelSegmentId;
     private int hotelPrice;
     private String currencyCode;

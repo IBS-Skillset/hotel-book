@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 public class HotelInfo {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int hotelInfoId;
     private int	totalPrice;
     private String currencyCode;

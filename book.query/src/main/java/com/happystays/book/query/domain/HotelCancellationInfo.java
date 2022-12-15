@@ -2,10 +2,7 @@ package com.happystays.book.query.domain;
 
 import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 
@@ -17,6 +14,7 @@ import java.util.Date;
 @Entity
 public class HotelCancellationInfo {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int cancellationInfoId;
     private Date cancellationDeadline;
     private Boolean isCancellable;

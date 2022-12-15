@@ -26,7 +26,7 @@ public class Pnr extends BaseEntity {
 
     private String status;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "trip_id")
     private Trip trip;
 

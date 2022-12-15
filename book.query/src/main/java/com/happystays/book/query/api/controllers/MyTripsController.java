@@ -3,21 +3,17 @@ package com.happystays.book.query.api.controllers;
 import com.happystays.book.query.api.dto.MyTripsResponse;
 import com.happystays.book.query.api.queries.FindMyTrips;
 import com.happystays.book.query.domain.MyTripsResponseDto;
-import com.happystays.book.query.domain.Pnr;
 import com.happystays.cqrs.core.infrastucture.QueryDispatcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @RestController
 public class MyTripsController {
@@ -28,11 +24,10 @@ public class MyTripsController {
     public MyTripsController(QueryDispatcher queryDispatcher) {
         this.queryDispatcher = queryDispatcher;
     }
-
-    @GetMapping(path = "/myTrips/{id}")
-    public ResponseEntity<MyTripsResponse> getMyTrips(@PathVariable(value = "id") String id) {
+    @GetMapping(path = "/api/myTrips")
+    public ResponseEntity<MyTripsResponse> getMyTrips() {
         try {
-            List<MyTripsResponseDto> myTrips = queryDispatcher.send(new FindMyTrips(id));
+            List<MyTripsResponseDto> myTrips = queryDispatcher.send(new FindMyTrips(SecurityContextHolder.getContext().getAuthentication().getName()));
 
             if (CollectionUtils.isEmpty(myTrips)) {
                 return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);

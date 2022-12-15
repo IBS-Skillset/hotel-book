@@ -6,10 +6,14 @@ import com.happystays.cqrs.core.infrastucture.QueryDispatcher;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication
+@EnableEurekaClient
+@EnableDiscoveryClient
 @AllArgsConstructor
 public class QueryApplication {
 

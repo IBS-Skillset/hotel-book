@@ -6,6 +6,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,6 +16,7 @@ import java.util.Date;
 @Entity
 public class Trip {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int tripId;
     private double totalPrice;
     private String currencyCode;
@@ -22,6 +24,6 @@ public class Trip {
     private Date endDate;
 
     @LazyCollection(LazyCollectionOption.EXTRA)
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "trip")
-    private Pnr pnr;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "trip")
+    private List<Pnr> pnr;
 }
