@@ -32,10 +32,10 @@ public class HotelQueryHandler implements QueryHandler {
                 .flatMap(pnr -> pnr.getHotelInfo().stream()
                 .flatMap(info -> info.getSegment().stream()
                 .map(seg -> new MyTripsResponseDto(seg.getConfirmationNumber(),
-                        pnr.getCreationDate(), info.getPropertyName(),
-                        seg.getCheckInDate(), seg.getCheckOutDate(),
+                        pnr.getCreationDate().toString(), info.getPropertyName(),
+                        seg.getCheckInDate().toString(), seg.getCheckOutDate().toString(),
                         seg.getHotelPrice(), seg.getCurrencyCode(),
-                        seg.getHotelCancellationInfo().getCancellationDeadline()))))
+                        seg.getHotelCancellationInfo().getCancellationDeadline().toString()))))
                 .sorted(Comparator.comparing(MyTripsResponseDto::getCheckInDate))
                 .collect(Collectors.toList());
         return new ArrayList<>(responseDto);

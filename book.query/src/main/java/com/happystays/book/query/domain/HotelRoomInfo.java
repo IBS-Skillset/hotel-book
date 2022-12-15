@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Entity
 public class HotelRoomInfo {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int roomInfoId;
     private Double nightlyPrice;
     private String rateDescription;
