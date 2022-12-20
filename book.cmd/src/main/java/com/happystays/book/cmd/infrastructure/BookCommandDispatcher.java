@@ -2,7 +2,7 @@ package com.happystays.book.cmd.infrastructure;
 
 import com.happystays.cqrs.core.commands.BaseCommand;
 import com.happystays.cqrs.core.commands.CommandHandlerMethod;
-import com.happystays.cqrs.core.dto.BookResponse;
+import com.happystays.cqrs.core.dto.response.BookResponse;
 import com.happystays.cqrs.core.infrastucture.CommandDispatcher;
 import org.springframework.stereotype.Service;
 

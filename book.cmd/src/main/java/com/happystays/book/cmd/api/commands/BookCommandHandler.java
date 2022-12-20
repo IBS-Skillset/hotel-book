@@ -1,8 +1,10 @@
 package com.happystays.book.cmd.api.commands;
 
 import com.happystays.book.cmd.domain.BookAggregate;
-import com.happystays.cqrs.core.dto.BookResponse;
+import com.happystays.cqrs.core.dto.response.BookResponse;
+import com.happystays.cqrs.core.handlers.EventSourcingHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,8 @@ public class BookCommandHandler implements CommandHandler {
 
     private final String uri = "http://localhost:8087/hotel-book-service/api/book";
 
-    //ToDo: Aggregate and eventSourceHandler
+    @Autowired
+    private EventSourcingHandler<BookAggregate> eventSourcingHandler;
 
     @Override
     public BookResponse handle(BookCommand command) {
@@ -33,7 +36,7 @@ public class BookCommandHandler implements CommandHandler {
         if(Objects.nonNull(bookResponse) && Objects.nonNull(bookResponse.getBody()) && Objects.nonNull(bookResponse.getBody().getPnrInfo()) && Objects.nonNull(bookResponse.getBody().getPnrInfo().getBookingDescription()) && bookResponse.getBody().getPnrInfo().getBookingDescription().equalsIgnoreCase("Confirmed")){
             bookResponse.getBody().setMessage("Hotel booked successfully");
             BookAggregate bookAggregate = new BookAggregate(bookResponse.getBody() , command);
-
+            eventSourcingHandler.saveEvents(bookAggregate);
         }
         return bookResponse.getBody();
 
