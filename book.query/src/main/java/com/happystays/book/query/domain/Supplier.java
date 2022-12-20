@@ -15,13 +15,9 @@ import javax.persistence.*;
 public class Supplier {
     @Id
     @Column(name = "supplier_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int supplierId;
     private String supplierCode;
     private String supplierName;
     private String supplierUri;
 
-    @LazyCollection(LazyCollectionOption.EXTRA)
-    @OneToOne(cascade = CascadeType.ALL,mappedBy ="supplier" )
-    private Pnr pnr;
 }

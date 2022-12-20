@@ -18,7 +18,7 @@ public class Pnr extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int pnrId;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
@@ -26,13 +26,19 @@ public class Pnr extends BaseEntity {
 
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "trip_id")
     private Trip trip;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pnr")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "pnr")
     private List<HotelInfo> hotelInfo;
+
+    public void addHotelInfoList(List<HotelInfo> hotelInfo) {
+        for (HotelInfo x : hotelInfo) {
+            this.hotelInfo.add(x);
+            x.setPnr(this);
+        }
+    }
 
     @ManyToMany(cascade = {
             CascadeType.MERGE

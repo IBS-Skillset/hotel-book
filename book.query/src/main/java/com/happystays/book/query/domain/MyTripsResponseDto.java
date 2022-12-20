@@ -17,7 +17,7 @@ public class MyTripsResponseDto extends BaseEntity {
     private String hotelName;
     private String checkInDate;
     private String checkOutDate;
-    private int totalPrice;
+    private String totalPrice;
     private String currencyCode;
     private String freeCancellationUntil;
 }

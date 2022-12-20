@@ -34,7 +34,7 @@ public class HotelQueryHandler implements QueryHandler {
                 .map(seg -> new MyTripsResponseDto(seg.getConfirmationNumber(),
                         pnr.getCreationDate().toString(), info.getPropertyName(),
                         seg.getCheckInDate().toString(), seg.getCheckOutDate().toString(),
-                        seg.getHotelPrice(), seg.getCurrencyCode(),
+                        String.valueOf(seg.getHotelPrice()), seg.getCurrencyCode(),
                         seg.getHotelCancellationInfo().getCancellationDeadline().toString()))))
                 .sorted(Comparator.comparing(MyTripsResponseDto::getCheckInDate))
                 .collect(Collectors.toList());

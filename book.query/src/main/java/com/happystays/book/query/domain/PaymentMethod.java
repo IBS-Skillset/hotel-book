@@ -12,13 +12,20 @@ import javax.persistence.*;
 @Entity
 public class PaymentMethod {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int paymentId;
     private String paymentType;
-    private int hotelInfoId;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private  CreditCard creditCard;
+    @JoinColumn(name = "creditcard_id")
+    private CreditCard creditCard;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "paymentMethod")
-    private HotelInfo info;
+    @OneToOne(mappedBy = "paymentMethod")
+    private HotelInfo hotelInfo;
+
+    public void addCreditCard(CreditCard creditCard) {
+        this.setCreditCard(creditCard);
+        creditCard.setPaymentMethod(this);
+    }
+
 }
