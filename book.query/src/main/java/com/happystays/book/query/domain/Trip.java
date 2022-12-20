@@ -1,10 +1,10 @@
 package com.happystays.book.query.domain;
 
+import com.happystays.cqrs.core.domain.BaseEntity;
 import lombok.*;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Trip {
+public class Trip extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int tripId;
@@ -23,7 +23,13 @@ public class Trip {
     private Date beginDate;
     private Date endDate;
 
-    @LazyCollection(LazyCollectionOption.EXTRA)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "trip")
-    private List<Pnr> pnr;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "trip",cascade = {CascadeType.ALL})
+    private List<Pnr> pnr=new ArrayList<>();
+
+    public void addPnrList(List<Pnr> pnrs) {
+        for (Pnr x : pnrs) {
+            this.pnr.add(x);
+            x.setTrip(this);
+        }
+    }
 }

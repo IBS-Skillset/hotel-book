@@ -18,7 +18,7 @@ public class HotelRoomInfo {
     private String rateDescription;
     private boolean breakfastIncluded;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "hotelRoomInfo")
-    private HotelSegment segment;
+    @OneToOne(mappedBy = "hotelRoomInfo")
+    private HotelSegment hotelsegment;
 
 }

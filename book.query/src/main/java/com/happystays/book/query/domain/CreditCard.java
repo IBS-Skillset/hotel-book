@@ -2,10 +2,7 @@ package com.happystays.book.query.domain;
 
 import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -15,11 +12,11 @@ import javax.persistence.OneToOne;
 @Entity
 public class CreditCard {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int creditCardId;
     private String maskedCardNumber ;
-    private String cardHolderFirstName;
-    private String cardHolderLastName;
+    private String cardHolderName;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "creditCard")
+    @OneToOne(mappedBy = "creditCard")
     private  PaymentMethod paymentMethod;
 }

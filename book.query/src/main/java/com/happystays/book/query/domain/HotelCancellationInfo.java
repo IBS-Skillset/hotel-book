@@ -21,8 +21,8 @@ public class HotelCancellationInfo {
     private String cancellationPolicy;
     private Date cancellationDate;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "hotelCancellationInfo")
-    private HotelSegment segment;
+    @OneToOne(mappedBy = "hotelCancellationInfo")
+    private HotelSegment hotelsegment;
 
 }
 
