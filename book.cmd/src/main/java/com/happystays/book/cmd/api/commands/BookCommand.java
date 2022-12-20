@@ -1,9 +1,9 @@
 package com.happystays.book.cmd.api.commands;
 
 import com.happystays.cqrs.core.commands.BaseCommand;
-import com.happystays.cqrs.core.dto.CancellationInfo;
-import com.happystays.cqrs.core.dto.PaymentInfo;
-import com.happystays.cqrs.core.dto.UserInfo;
+import com.happystays.cqrs.core.dto.request.CancellationInfo;
+import com.happystays.cqrs.core.dto.request.PaymentInfo;
+import com.happystays.cqrs.core.dto.request.UserInfo;
 import lombok.Data;
 
 @Data

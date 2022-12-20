@@ -15,10 +15,8 @@ import javax.annotation.PostConstruct;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class CommandApplication {
-
 	@Autowired
 	private CommandDispatcher commandDispatcher;
-
 	@Autowired
 	private CommandHandler commandHandler;
 
