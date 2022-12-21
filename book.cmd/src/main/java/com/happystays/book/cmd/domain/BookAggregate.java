@@ -2,16 +2,16 @@ package com.happystays.book.cmd.domain;
 
 import com.happystays.book.cmd.api.commands.BookCommand;
 import com.happystays.cqrs.core.domain.AggregateRoot;
-import com.happystays.cqrs.core.dto.events.successevent.Pnr;
-import com.happystays.cqrs.core.dto.events.successevent.CreditCard;
-import com.happystays.cqrs.core.dto.events.successevent.HotelInfo;
-import com.happystays.cqrs.core.dto.events.successevent.HotelSegment;
-import com.happystays.cqrs.core.dto.events.successevent.HotelRoomInfo;
-import com.happystays.cqrs.core.dto.events.successevent.PaymentMethod;
-import com.happystays.cqrs.core.dto.events.successevent.Trip;
-import com.happystays.cqrs.core.dto.events.successevent.HotelCancellationInfo;
+import com.happystays.book.common.dto.successeventmodel.Pnr;
+import com.happystays.book.common.dto.successeventmodel.CreditCard;
+import com.happystays.book.common.dto.successeventmodel.HotelInfo;
+import com.happystays.book.common.dto.successeventmodel.HotelSegment;
+import com.happystays.book.common.dto.successeventmodel.HotelRoomInfo;
+import com.happystays.book.common.dto.successeventmodel.PaymentMethod;
+import com.happystays.book.common.dto.successeventmodel.Trip;
+import com.happystays.book.common.dto.successeventmodel.HotelCancellationInfo;
 import com.happystays.cqrs.core.dto.response.BookResponse;
-import com.happystays.cqrs.core.events.BookingSuccessEvent;
+import com.happystays.book.common.events.BookingSuccessEvent;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;

@@ -183,7 +183,6 @@
     <configuration name="CommandApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="book.cmd" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.happystays.book.cmd.CommandApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -191,7 +190,6 @@
     <configuration name="QueryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="book.query" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.happystays.book.query.QueryApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
