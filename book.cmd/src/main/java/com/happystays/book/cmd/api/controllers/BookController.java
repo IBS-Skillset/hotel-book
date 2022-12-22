@@ -1,5 +1,6 @@
 package com.happystays.book.cmd.api.controllers;
 
+import com.happystays.book.common.dto.error.ErrorResponse;
 import com.happystays.cqrs.core.dto.response.BaseResponse;
 import com.happystays.cqrs.core.dto.response.BookResponse;
 import com.happystays.cqrs.core.infrastucture.CommandDispatcher;
@@ -32,13 +33,9 @@ public class BookController {
             bookResponse.setId(id);
             return new ResponseEntity<>(bookResponse, HttpStatus.CREATED);
 
-        } catch (IllegalStateException  e) {
-            log.warn("Bad request", e.getMessage());
-            return new ResponseEntity<>(new BaseResponse(e.getMessage()), HttpStatus.BAD_REQUEST);
-
         } catch (Exception e) {
             log.warn("Bad request", e.getMessage());
-            return new ResponseEntity<>(new BaseResponse(e.getMessage()), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ErrorResponse(-1 , 999, e.getMessage()), HttpStatus.BAD_REQUEST);
 
         }
     }
