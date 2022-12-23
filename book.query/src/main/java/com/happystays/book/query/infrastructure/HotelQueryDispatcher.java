@@ -5,6 +5,7 @@ import com.happystays.cqrs.core.infrastucture.QueryDispatcher;
 import com.happystays.cqrs.core.queries.BaseQuery;
 import com.happystays.cqrs.core.queries.QueryHandlerMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -24,7 +25,7 @@ public class HotelQueryDispatcher implements QueryDispatcher {
     @Override
     public <U extends BaseEntity> List<U> send(BaseQuery query) {
         var handlers = routes.get(query.getClass());
-        if (handlers == null || handlers.size() == 0) {
+        if (CollectionUtils.isEmpty(handlers)) {
             throw new RuntimeException("No query handler was registered!");
         }
         if (handlers.size() > 1) {

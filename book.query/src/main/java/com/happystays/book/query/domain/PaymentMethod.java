@@ -27,5 +27,4 @@ public class PaymentMethod {
         this.setCreditCard(creditCard);
         creditCard.setPaymentMethod(this);
     }
-
 }

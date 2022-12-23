@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class HotelQueryEventConsumer implements EventConsumer{
-    private EventHandler eventHandler;
+    private final EventHandler eventHandler;
 
     @KafkaListener(topics = "BookingSuccessEvent", groupId = "${spring.kafka.consumer.group-id}")
     @Override

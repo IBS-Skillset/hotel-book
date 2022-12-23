@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class HotelQueryEventHandler implements EventHandler {
 
-    private TripRepository tripRepository;
-    private UserRepository userRepository;
-    private SupplierRepository supplierRepository;
+    private final TripRepository tripRepository;
+    private final UserRepository userRepository;
+    private final SupplierRepository supplierRepository;
 
     @Override
     public void on(BookingSuccessEvent bookingSuccessEvent) {
