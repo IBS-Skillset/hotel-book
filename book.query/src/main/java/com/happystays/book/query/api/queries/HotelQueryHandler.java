@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 @Service
 public class HotelQueryHandler implements QueryHandler {
     private final PnrRepository pnrRepository;
-
     public HotelQueryHandler(PnrRepository pnrRepository) {
         this.pnrRepository = pnrRepository;
     }

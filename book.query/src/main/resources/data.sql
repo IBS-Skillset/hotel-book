@@ -1,0 +1,1 @@
+INSERT INTO supplier(supplier_id, supplier_code, supplier_name, supplier_uri) VALUES (1,'supplier code','supplier name','supplier url');

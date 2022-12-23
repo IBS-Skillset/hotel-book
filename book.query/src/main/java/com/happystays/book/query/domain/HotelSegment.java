@@ -42,5 +42,4 @@ public class HotelSegment {
         this.setHotelCancellationInfo(hotelCancellationInfo);
         hotelCancellationInfo.setHotelsegment(this);
     }
-
 }

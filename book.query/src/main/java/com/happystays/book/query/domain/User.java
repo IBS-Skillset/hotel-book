@@ -34,5 +34,4 @@ public class User {
     @ManyToMany(fetch=FetchType.LAZY,
             mappedBy = "user", cascade = { CascadeType.MERGE })
     private List<Pnr> pnr;
-
 }

@@ -20,5 +20,4 @@ public class HotelRoomInfo {
 
     @OneToOne(mappedBy = "hotelRoomInfo")
     private HotelSegment hotelsegment;
-
 }
