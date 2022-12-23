@@ -15,7 +15,7 @@ public class HotelInfo {
     private String currencyCode;
     private String propertyCode;
     private String propertyName;
-    private HotelAddress hotelAddress;
+    private String hotelAddress;
     private String hotelPhone;
     private String countryCode;
     private String locationCode;
