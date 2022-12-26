@@ -1,7 +1,7 @@
 package com.happystays.book.cmd.handler;
 
-import com.happystays.book.cmd.util.ErrorResponseEntityBuilder;
-import com.happystays.book.common.dto.error.ErrorResponse;
+import com.happystays.book.cmd.error.ErrorResponseEntityBuilder;
+import com.happystays.book.common.dto.errormodel.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

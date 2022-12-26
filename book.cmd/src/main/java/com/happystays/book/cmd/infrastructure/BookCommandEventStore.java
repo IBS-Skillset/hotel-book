@@ -27,31 +27,32 @@ public class BookCommandEventStore implements EventStore {
 
     @Override
     public void saveEvents(String aggregateId, BaseEvent baseEvent, int expectedVersion) {
-        eventProducer.produce(baseEvent.getClass().getSimpleName(), baseEvent);
-        List<EventModel> eventsList = eventStoreRepository.findByAggregateId(aggregateId);
-        if(expectedVersion != -1 && eventsList.get(eventsList.size() - 1).getVersion() != expectedVersion){
-            throw new ConcurrencyException();
-        }
-        int version = expectedVersion;
-        BookingSuccessEvent event = (BookingSuccessEvent) baseEvent;
-        version ++;
-        event.setVersion(version);
-        Pnr pnrInformation = event.getPnrList().get(0);
-        HotelSegment hotelSegmentInformation = pnrInformation.getHotelInfoList().get(0).getHotelSegmentList().get(0);
-        EventModel eventModel = EventModel.builder().version(version)
-                .aggregateId(aggregateId)
-                .aggregateType(BookAggregate.class.getTypeName())
-                .id(event.getId())
-                .eventData(PnrEventModel.builder()
-                        .bookingState(pnrInformation.getStatus())
-                        .confirmationNumber(hotelSegmentInformation.getConfirmationNumber())
-                        .beginDate(pnrInformation.getTrip().getBeginDate())
-                        .endDate(pnrInformation.getTrip().getEndDate())
-                        .occupancy(hotelSegmentInformation.getOccupancy())
-                        .totalAmount(pnrInformation.getTrip().getTotalPrice())
-                        .creationDate(pnrInformation.getCreationDate())
-                        .build())
-                .build();
-            eventStoreRepository.save(eventModel);
+        //ToDo: mapping needs to be done with latest success event structure refactor
+//        eventProducer.produce(baseEvent.getClass().getSimpleName(), baseEvent);
+//        List<EventModel> eventsList = eventStoreRepository.findByAggregateId(aggregateId);
+//        if(expectedVersion != -1 && eventsList.get(eventsList.size() - 1).getVersion() != expectedVersion){
+//            throw new ConcurrencyException();
+//        }
+//        int version = expectedVersion;
+//        BookingSuccessEvent event = (BookingSuccessEvent) baseEvent;
+//        version ++;
+//        event.setVersion(version);
+//        Pnr pnrInformation = event.getPnrList().get(0);
+//        HotelSegment hotelSegmentInformation = pnrInformation.getHotelInfoList().get(0).getHotelSegmentList().get(0);
+//        EventModel eventModel = EventModel.builder().version(version)
+//                .aggregateId(aggregateId)
+//                .aggregateType(BookAggregate.class.getTypeName())
+//                .id(event.getId())
+//                .eventData(PnrEventModel.builder()
+//                        .bookingState(pnrInformation.getStatus())
+//                        .confirmationNumber(hotelSegmentInformation.getConfirmationNumber())
+//                        .beginDate(pnrInformation.getTrip().getBeginDate())
+//                        .endDate(pnrInformation.getTrip().getEndDate())
+//                        .occupancy(hotelSegmentInformation.getOccupancy())
+//                        .totalAmount(pnrInformation.getTrip().getTotalPrice())
+//                        .creationDate(pnrInformation.getCreationDate())
+//                        .build())
+//                .build();
+//            eventStoreRepository.save(eventModel);
     }
 }

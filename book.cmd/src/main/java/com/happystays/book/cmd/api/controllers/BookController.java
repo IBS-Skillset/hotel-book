@@ -1,10 +1,10 @@
 package com.happystays.book.cmd.api.controllers;
 
-import com.happystays.book.common.dto.error.ErrorResponse;
-import com.happystays.cqrs.core.dto.response.BaseResponse;
-import com.happystays.cqrs.core.dto.response.BookResponse;
+import com.happystays.book.common.dto.errormodel.ErrorResponse;
+import com.happystays.book.common.dto.responsemodel.BookResponse;
 import com.happystays.cqrs.core.infrastucture.CommandDispatcher;
 import com.happystays.book.cmd.api.commands.BookCommand;
+import com.happystays.cqrs.core.response.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,8 +29,7 @@ public class BookController {
         var id = UUID.randomUUID().toString();
         command.setId(id);
         try {
-            BookResponse bookResponse = commandDispatcher.send(command);
-            bookResponse.setId(id);
+            BookResponse bookResponse = (BookResponse) commandDispatcher.send(command);
             return new ResponseEntity<>(bookResponse, HttpStatus.CREATED);
 
         } catch (Exception e) {
