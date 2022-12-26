@@ -1,6 +1,6 @@
-package com.happystays.book.cmd.util;
+package com.happystays.book.cmd.error;
 
-import com.happystays.book.common.dto.error.ErrorResponse;
+import com.happystays.book.common.dto.errormodel.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

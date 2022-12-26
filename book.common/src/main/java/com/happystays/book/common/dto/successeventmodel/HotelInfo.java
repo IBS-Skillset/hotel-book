@@ -1,6 +1,5 @@
 package com.happystays.book.common.dto.successeventmodel;
 
-import com.happystays.cqrs.core.dto.response.HotelAddress;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,7 @@
 package com.happystays.book.cmd.api.commands;
 
 import com.happystays.book.cmd.domain.BookAggregate;
-import com.happystays.cqrs.core.dto.response.BookResponse;
+import com.happystays.book.common.dto.responsemodel.BookResponse;
 import com.happystays.cqrs.core.handlers.EventSourcingHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

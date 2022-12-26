@@ -1,6 +1,6 @@
-package com.happystays.book.common.dto.error;
+package com.happystays.book.common.dto.errormodel;
 
-import com.happystays.cqrs.core.dto.response.BaseResponse;
+import com.happystays.cqrs.core.response.BaseResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -2,8 +2,8 @@ package com.happystays.book.cmd.infrastructure;
 
 import com.happystays.cqrs.core.commands.BaseCommand;
 import com.happystays.cqrs.core.commands.CommandHandlerMethod;
-import com.happystays.cqrs.core.dto.response.BookResponse;
 import com.happystays.cqrs.core.infrastucture.CommandDispatcher;
+import com.happystays.cqrs.core.response.BaseResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class BookCommandDispatcher implements CommandDispatcher {
     }
 
     @Override
-    public BookResponse send(BaseCommand command) {
+    public BaseResponse send(BaseCommand command) {
         var handlers = routes.get(command.getClass());
         if (Objects.isNull(handlers) || handlers.isEmpty()) {
             throw new RuntimeException("No command handler was registered");
