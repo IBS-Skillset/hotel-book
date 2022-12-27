@@ -25,18 +25,20 @@ public class BookController {
     private CommandDispatcher commandDispatcher;
 
     @PostMapping
-    public ResponseEntity<BaseResponse> hotelBook(@RequestBody BookCommand command) {
+    public BookResponse hotelBook(@RequestBody BookCommand command) {
         var id = UUID.randomUUID().toString();
         command.setId(id);
         try {
             BookResponse bookResponse = (BookResponse) commandDispatcher.send(command);
-            return new ResponseEntity<>(bookResponse, HttpStatus.CREATED);
+            return bookResponse;
 
         } catch (Exception e) {
             log.warn("Bad request", e.getMessage());
-            return new ResponseEntity<>(new ErrorResponse(-1 , 999, e.getMessage()), HttpStatus.BAD_REQUEST);
+            //ToDo: Error mappings will handled in upcoming jira
+//            return new ResponseEntity<>(new ErrorResponse(-1 , 999, e.getMessage()), HttpStatus.BAD_REQUEST);
 
         }
+        return null;
     }
 }
 
