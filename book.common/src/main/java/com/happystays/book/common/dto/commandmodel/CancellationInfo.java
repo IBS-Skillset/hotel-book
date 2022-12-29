@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class CancellationInfo {
-    private boolean isCancellable;
+    private boolean cancellable;
     private String cancellationDate;
     private String cancellationPolicy;
 }

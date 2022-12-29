@@ -26,7 +26,7 @@ public class BookAggregate extends AggregateRoot {
     public BookAggregate (BookResponse bookResponse , BookCommand command) {
         raiseEvent(BookingSuccessEvent.builder().id(command.getId())
                 .trip(new Trip(bookResponse.getRoomRate().getTotalAmount(), bookResponse.getRoomRate().getCurrencyCode(), bookResponse.getStartDate(), bookResponse.getEndDate() ,
-                        List.of(new Pnr(1L, Date.from(Instant.now()), bookResponse.getPnrInfo().getBookingState(),
+                        List.of(new Pnr(1L, Date.from(Instant.now()), bookResponse.getPnrInfo().getBookingDescription(),
                                 List.of(new HotelInfo(bookResponse.getRoomRate().getTotalAmount(), bookResponse.getRoomRate().getCurrencyCode(), bookResponse.getHotelCode(),
                                         bookResponse.getHotelName(), bookResponse.getHotelAddress().toString(), command.getHotelPhone(), command.getCountryCode(), command.getCountryCode(), true,
                                         List.of(new HotelSegment(bookResponse.getRoomRate().getTotalAmount(), bookResponse.getRoomRate().getCurrencyCode(), bookResponse.getPnrInfo().getConfirmationNumber(), command.getGuestCount(), bookResponse.getStartDate(), bookResponse.getEndDate(),
