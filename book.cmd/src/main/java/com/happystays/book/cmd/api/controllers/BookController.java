@@ -1,5 +1,6 @@
 package com.happystays.book.cmd.api.controllers;
 
+import com.happystays.book.cmd.error.BookErrorBuilder;
 import com.happystays.book.common.dto.responsemodel.BookResponse;
 import com.happystays.cqrs.core.infrastucture.CommandDispatcher;
 import com.happystays.book.cmd.api.commands.BookCommand;
@@ -20,21 +21,22 @@ public class BookController {
     @Autowired
     private CommandDispatcher commandDispatcher;
 
+    @Autowired
+    private BookErrorBuilder errorBuilder;
+
     @PostMapping
     public BookResponse hotelBook(@RequestBody BookCommand command) {
+        BookResponse bookResponse = null;
         var id = UUID.randomUUID().toString();
         command.setId(id);
         try {
-            BookResponse bookResponse = (BookResponse) commandDispatcher.send(command);
-            return bookResponse;
-
+             bookResponse = (BookResponse) commandDispatcher.send(command);
         } catch (Exception e) {
-            log.warn("Bad request", e.getMessage());
-            //ToDo: Error mappings will handled in upcoming jira
-//            return new ResponseEntity<>(new ErrorResponse(-1 , 999, e.getMessage()), HttpStatus.BAD_REQUEST);
+            log.error("Bad request", e.getMessage());
+            bookResponse = errorBuilder.errorBuilder(e.getMessage());
 
         }
-        return null;
+        return bookResponse;
     }
 }
 
