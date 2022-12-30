@@ -1,14 +1,10 @@
 package com.happystays.book.cmd.api.controllers;
 
-import com.happystays.book.common.dto.errormodel.ErrorResponse;
 import com.happystays.book.common.dto.responsemodel.BookResponse;
 import com.happystays.cqrs.core.infrastucture.CommandDispatcher;
 import com.happystays.book.cmd.api.commands.BookCommand;
-import com.happystays.cqrs.core.response.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
