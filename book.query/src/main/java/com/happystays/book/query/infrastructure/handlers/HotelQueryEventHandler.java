@@ -92,8 +92,8 @@ public class HotelQueryEventHandler implements EventHandler {
         Trip trip = new Trip();
         trip.setBeginDate(CommonUtils.formatDate(bookingSuccessEvent.getTrip().getBeginDate(), CommonUtils.DATE_YYYY_MM_DD));
         trip.setEndDate(CommonUtils.formatDate(bookingSuccessEvent.getTrip().getEndDate(), CommonUtils.DATE_YYYY_MM_DD));
-        trip.setCurrencyCode(trip.getCurrencyCode());
-        trip.setTotalPrice(trip.getTotalPrice());
+        trip.setCurrencyCode(bookingSuccessEvent.getTrip().getCurrencyCode());
+        trip.setTotalPrice(bookingSuccessEvent.getTrip().getTotalPrice());
         trip.addPnrList(pnrList);
         trip.setPnr(pnrList);
         tripRepository.save(trip);
