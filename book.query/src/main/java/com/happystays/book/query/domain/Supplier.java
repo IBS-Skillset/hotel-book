@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Supplier {
     @Id
     @Column(name = "supplier_id")
-    private int supplierId;
+    private long supplierId;
     private String supplierCode;
     private String supplierName;
     private String supplierUri;

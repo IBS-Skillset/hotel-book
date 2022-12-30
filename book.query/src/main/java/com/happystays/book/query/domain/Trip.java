@@ -17,7 +17,7 @@ import java.util.List;
 public class Trip extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int tripId;
+    private long tripId;
     private double totalPrice;
     private String currencyCode;
     private Date beginDate;
