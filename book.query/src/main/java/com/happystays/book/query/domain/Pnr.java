@@ -18,7 +18,7 @@ public class Pnr extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int pnrId;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 

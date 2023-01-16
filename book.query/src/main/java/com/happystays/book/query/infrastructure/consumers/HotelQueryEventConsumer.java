@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class HotelQueryEventConsumer implements EventConsumer{
     private final EventHandler eventHandler;
 
-    @KafkaListener(topics = "BookingSuccessEvent", groupId = "${spring.kafka.consumer.group-id}")
+    @KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "${spring.kafka.consumer.group-id}")
     @Override
     public void consume(BookingSuccessEvent bookingSuccessEvent, Acknowledgment ack) {
         eventHandler.on(bookingSuccessEvent);
-        ack.acknowledge();;
+        ack.acknowledge();
     }
 }

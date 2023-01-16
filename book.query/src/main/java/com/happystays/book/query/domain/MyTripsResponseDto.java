@@ -6,17 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class MyTripsResponseDto extends BaseEntity {
     private String bookingId;
-    private String bookingDate;
+    private Date bookingDate;
     private String hotelName;
-    private String checkInDate;
-    private String checkOutDate;
-    private String totalPrice;
+    private Date checkInDate;
+    private Date checkOutDate;
+    private Double totalPrice;
     private String currencyCode;
-    private String freeCancellationUntil;
+    private Date freeCancellationUntil;
 }

@@ -22,7 +22,7 @@ public class HotelSegment {
     private Date checkInDate;
     private Date checkOutDate;
 
-    @OneToOne(cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="room_info_id")
     private HotelRoomInfo hotelRoomInfo;
 

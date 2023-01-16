@@ -27,7 +27,7 @@ public class MyTripsController {
             List<MyTripsResponseDto> myTrips = queryDispatcher.send(new FindMyTrips(SecurityContextHolder.getContext().getAuthentication().getName()));
 
             if (CollectionUtils.isEmpty(myTrips)) {
-                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
             var response = MyTripsResponse.builder()
