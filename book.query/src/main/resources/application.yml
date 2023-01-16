@@ -33,6 +33,8 @@ spring:
           json:
             trusted:
               packages: '*'
+    topic:
+      name: BookingSuccessEvent
 
   sql:
     init:

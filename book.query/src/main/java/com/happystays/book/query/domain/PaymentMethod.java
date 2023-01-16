@@ -16,7 +16,7 @@ public class PaymentMethod {
     private int paymentId;
     private String paymentType;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "creditcard_id")
     private CreditCard creditCard;
 

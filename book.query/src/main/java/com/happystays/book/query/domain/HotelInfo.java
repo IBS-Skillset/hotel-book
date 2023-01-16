@@ -29,7 +29,7 @@ public class HotelInfo {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "hotelInfo")
     private List<HotelSegment> segment=new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="payment_method_id")
     private PaymentMethod paymentMethod;
 

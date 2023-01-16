@@ -31,7 +31,6 @@ public class User {
     private String phone;
 
     @LazyCollection(LazyCollectionOption.EXTRA)
-    @ManyToMany(fetch=FetchType.LAZY,
-            mappedBy = "user", cascade = { CascadeType.MERGE })
+    @ManyToMany(mappedBy = "user", cascade = { CascadeType.MERGE })
     private List<Pnr> pnr;
 }
