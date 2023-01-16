@@ -1,0 +1,8 @@
+status: 0
+message: Hotel Booking Failed
+errorMapping:
+  supplier:
+    errorCode: 999
+    errorMessage: Error from supplier
+
+

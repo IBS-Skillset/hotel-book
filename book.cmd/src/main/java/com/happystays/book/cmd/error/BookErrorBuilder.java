@@ -1,21 +1,35 @@
 package com.happystays.book.cmd.error;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.happystays.book.common.dto.commonmodel.ResponseStatus;
 import com.happystays.book.common.dto.responsemodel.BookResponse;
+import com.happystays.book.common.utils.Constants;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import java.util.Objects;
 
-import static com.happystays.book.common.utils.Constants.FAILURE;
-import static com.happystays.book.common.utils.Constants.FAILURE_ERROR;
-
+@Slf4j
 @Component
 public class BookErrorBuilder {
+
+
+    private final ErrorMappings errorMappings;
+
+    public BookErrorBuilder(ErrorMappings errorMappings){
+        this.errorMappings = errorMappings;
+    }
+
     public BookResponse errorBuilder(String errorMessage) {
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+        mapper.findAndRegisterModules();
         BookResponse bookResponse = new BookResponse();
         ResponseStatus responseStatus = new ResponseStatus();
-        responseStatus.setStatus(FAILURE);
+        responseStatus.setStatus(Objects.requireNonNull(errorMappings).getStatus());
         responseStatus.setErrorMessage(errorMessage);
-        responseStatus.setErrorCode(FAILURE_ERROR);
+        responseStatus.setErrorCode(Objects.requireNonNull(errorMappings).getErrorMapping().get(Constants.SUPPLIER).getErrorCode());
         bookResponse.setResponseStatus(responseStatus);
+        bookResponse.setMessage(Objects.requireNonNull(errorMappings).getMessage());
         return bookResponse;
     }
 }
