@@ -14,12 +14,12 @@ public class CommonUtils {
 
     private CommonUtils(){}
 
-    public static Date formatDate(String Date, String format) {
+    public static Date formatDate(String date, String format) {
         try {
             DateFormat sourceFormat = new SimpleDateFormat(format);
-            return sourceFormat.parse(Date);
+            return sourceFormat.parse(date);
         } catch (Exception e) {
-            log.info("error while formatting date");
+            log.error("error while formatting date");
         }
         return null;
     }

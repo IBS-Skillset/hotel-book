@@ -11,15 +11,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pnr {
-
     private Long supplierId;
-
     private Date creationDate;
-
     private String status;
-
     private List<HotelInfo> hotelInfoList;
-
     private List<Long> userIdList;
-
 }

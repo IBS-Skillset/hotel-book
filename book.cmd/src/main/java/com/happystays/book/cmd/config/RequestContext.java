@@ -22,4 +22,6 @@ public class RequestContext {
         this.token = token;
     }
 
+    public void unload() { CONTEXT.remove(); }
+
 }

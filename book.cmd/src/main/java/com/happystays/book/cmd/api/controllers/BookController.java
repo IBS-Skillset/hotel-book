@@ -4,8 +4,8 @@ import com.happystays.book.cmd.error.BookErrorBuilder;
 import com.happystays.book.common.dto.responsemodel.BookResponse;
 import com.happystays.cqrs.core.infrastucture.CommandDispatcher;
 import com.happystays.book.cmd.api.commands.BookCommand;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @Slf4j
+@AllArgsConstructor
 @RestController
 @RequestMapping(path = "/api/book")
 public class BookController {
-    @Autowired
-    private CommandDispatcher commandDispatcher;
 
-    @Autowired
-    private BookErrorBuilder errorBuilder;
+    private final CommandDispatcher commandDispatcher;
+    private final BookErrorBuilder errorBuilder;
 
     @PostMapping
     public BookResponse hotelBook(@RequestBody BookCommand command) {

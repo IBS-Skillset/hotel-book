@@ -10,7 +10,7 @@ import com.happystays.cqrs.core.events.BaseEventStore;
 import com.happystays.cqrs.core.exceptions.ConcurrencyException;
 import com.happystays.cqrs.core.infrastucture.EventStore;
 import com.happystays.cqrs.core.producers.EventProducer;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -19,12 +19,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @Service
+@AllArgsConstructor
 public class BookCommandEventStore implements EventStore {
 
-    @Autowired
     private EventStoreRepository eventStoreRepository;
-
-    @Autowired
     private EventProducer eventProducer;
 
     @Override
@@ -46,15 +44,12 @@ public class BookCommandEventStore implements EventStore {
 
     private PnrEvent setPnrEvent(BookingSuccessEvent bookingSuccessEvent) {
         List<String> confirmationNumbers = new ArrayList<>();
-        bookingSuccessEvent.getTrip().getPnrList().forEach(pnr -> {
-            pnr.getHotelInfoList().forEach(hotelInfo -> {
-                hotelInfo.getHotelSegmentList().forEach(hotelSegment -> {
-                    confirmationNumbers.add(hotelSegment.getConfirmationNumber());
-                });
-            });
-        });
+        bookingSuccessEvent.getTrip().getPnrList().forEach(pnr ->
+                pnr.getHotelInfoList().forEach(hotelInfo ->
+                        hotelInfo.getHotelSegmentList().forEach(hotelSegment ->
+                                confirmationNumbers.add(hotelSegment.getConfirmationNumber()))));
         Trip trip = bookingSuccessEvent.getTrip();
-        PnrEvent pnrEvent = PnrEvent.builder()
+        return PnrEvent.builder()
                 .version(bookingSuccessEvent.getVersion())
                 .aggregateId(bookingSuccessEvent.getId())
                 .aggregateType(BookAggregate.class.getSimpleName())
@@ -67,6 +62,5 @@ public class BookCommandEventStore implements EventStore {
                 .endDate(trip.getEndDate())
                 .totalAmount(trip.getTotalPrice())
                 .build();
-        return pnrEvent;
     }
 }
