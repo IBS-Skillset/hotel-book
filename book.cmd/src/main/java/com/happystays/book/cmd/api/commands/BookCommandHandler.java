@@ -1,12 +1,12 @@
 package com.happystays.book.cmd.api.commands;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.happystays.book.cmd.config.RequestContext;
 import com.happystays.book.cmd.domain.BookAggregate;
 import com.happystays.book.common.dto.responsemodel.BookResponse;
 import com.happystays.cqrs.core.handlers.EventSourcingHandler;
+import com.happystays.cqrs.core.response.BaseResponse;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpEntity;
@@ -23,14 +23,13 @@ import static com.happystays.book.common.utils.Constants.CONFIRMED;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class BookCommandHandler implements CommandHandler {
 
-    @Autowired
     private EventSourcingHandler<BookAggregate> eventSourcingHandler;
 
     @Override
-    public BookResponse handle(BookCommand command) {
-
+    public BaseResponse handle(BookCommand command) {
         HttpEntity<BookCommand> entityReq = new HttpEntity<>(command, getHeader());
         RestTemplate template = new RestTemplate();
         ResponseEntity<BookResponse> bookResponse = template

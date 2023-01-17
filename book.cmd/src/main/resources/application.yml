@@ -11,7 +11,7 @@ spring:
       database: myStays
   kafka:
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: ${kafka.bootstrap-servers}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   application:
@@ -28,4 +28,5 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: ${eureka.service-url.default}
+
 

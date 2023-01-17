@@ -13,7 +13,5 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 public class BookingSuccessEvent extends BaseEvent {
-
     private Trip trip;
-
 }

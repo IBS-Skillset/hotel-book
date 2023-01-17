@@ -1,8 +1,8 @@
 package com.happystays.book.cmd.api.commands;
 
-import com.happystays.book.common.dto.responsemodel.BookResponse;
+import com.happystays.cqrs.core.response.BaseResponse;
 
 public interface CommandHandler {
-    BookResponse handle(BookCommand command);
+    BaseResponse handle(BookCommand command);
 
 }
