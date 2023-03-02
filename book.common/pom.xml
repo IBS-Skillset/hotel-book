@@ -38,6 +38,13 @@
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>ibsplc-cqrs-core</id>
+			<name>ibsplc-cqrs-core</name>
+			<url>https://ibsplc-306472407007.d.codeartifact.ap-south-1.amazonaws.com/maven/cqrs-core/</url>
+		</repository>
+	</repositories>
 
 	
 

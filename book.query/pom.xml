@@ -94,7 +94,15 @@
         </dependencies>
     </dependencyManagement>
 
+    <repositories>
+        <repository>
+            <id>ibsplc-cqrs-core</id>
+            <name>ibsplc-cqrs-core</name>
+            <url>https://ibsplc-306472407007.d.codeartifact.ap-south-1.amazonaws.com/maven/cqrs-core/</url>
+        </repository>
+    </repositories>
     <build>
+        <finalName>book.query</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

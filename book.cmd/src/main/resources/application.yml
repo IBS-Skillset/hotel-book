@@ -29,4 +29,7 @@ eureka:
     service-url:
       defaultZone: ${eureka.service-url.default}
 
+auth:
+  server:
+    url: http://localhost:9000
 
