@@ -11,7 +11,6 @@
 
 
     <modules>
-        <module>../cqrs-es/cqrs-core</module>
         <module>book.common</module>
         <module>book.cmd</module>
         <module>book.query</module>

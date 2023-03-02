@@ -1,0 +1,41 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain ibsplc --domain-owner ${AWS_ACCOUNT_ID} --region ${AWS_DEFAULT_REGION} --query authorizationToken --output text`
+      - mvn -s settings.xml clean install
+      - echo Logging in to Amazon ECR...
+      - echo $AWS_DEFAULT_REGION
+      - echo $AWS_ACCOUNT_ID
+      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo $IMAGE_REPO_NAME
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - REPOSITORY_URI_CMD=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME/hotel-book/book-cmd
+      - REPOSITORY_URI_QUERY=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME/hotel-book/book-query
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI_CMD:latest -t $REPOSITORY_URI_QUERY:latest .
+      - echo Tagging Docker image...
+      - docker tag $REPOSITORY_URI_CMD:latest $REPOSITORY_URI_CMD:$IMAGE_TAG
+      - docker tag $REPOSITORY_URI_QUERY:latest $REPOSITORY_URI_QUERY:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI_CMD:$IMAGE_TAG
+      - docker push $REPOSITORY_URI_QUERY:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"book-cmd","imageUri":"%s"}]' $REPOSITORY_URI_CMD:$IMAGE_TAG > imageDefinitions.json
+      - printf '[{"name":"book-query","imageUri":"%s"}]' $REPOSITORY_URI_QUERY:$IMAGE_TAG > imageDefinitions.json
+      - cat imageDefinitions.json
+artifacts:
+  files:
+    - imageDefinitions.json

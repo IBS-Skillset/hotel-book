@@ -5,9 +5,9 @@ server:
 
 spring:
   datasource:
-    url: ${db.url}
-    username: ${db.username}
-    password: ${db.password}
+    url: jdbc:postgresql://localhost:127.0.0.1}:5432/postgres?currentSchema=mystays
+    username: postgres
+    password: manager123
     driverClassName: org.postgresql.Driver
     initialize: true
   jpa:
@@ -55,3 +55,7 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: ${eureka.service-url.default}
+
+auth:
+  server:
+    url: http://localhost:9000
