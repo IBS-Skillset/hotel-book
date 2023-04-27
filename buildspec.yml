@@ -36,7 +36,7 @@ phases:
       - docker push $REPOSITORY_URI_CMD:$IMAGE_TAG
       - docker push $REPOSITORY_URI_QUERY:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"book-cmd","imageUri":"%s"}, {"name":"book-query","imageUri":"%s"} ]' $REPOSITORY_URI_CMD:$IMAGE_TAG  REPOSITORY_URI_QUERY:$IMAGE_TAG > imageDefinitions.json
+      - printf '[{"name":"book-cmd","imageUri":"%s"}, {"name":"book-query","imageUri":"%s"} ]' $REPOSITORY_URI_CMD:$IMAGE_TAG  $REPOSITORY_URI_QUERY:$IMAGE_TAG > imageDefinitions.json
       - cat imageDefinitions.json
 artifacts:
   files:
