@@ -21,10 +21,16 @@ import java.util.Objects;
 import static com.happystays.book.common.utils.Constants.BOOK_URL;
 import static com.happystays.book.common.utils.Constants.CONFIRMED;
 
+import org.springframework.beans.factory.annotation.Value;
+
 @Service
 @Slf4j
 @AllArgsConstructor
 public class BookCommandHandler implements CommandHandler {
+
+
+    @Value("${book.service.url}")
+    private String bookService;
 
     private EventSourcingHandler<BookAggregate> eventSourcingHandler;
 
@@ -33,7 +39,7 @@ public class BookCommandHandler implements CommandHandler {
         HttpEntity<BookCommand> entityReq = new HttpEntity<>(command, getHeader());
         RestTemplate template = new RestTemplate();
         ResponseEntity<BookResponse> bookResponse = template
-                .exchange(BOOK_URL, HttpMethod.POST, entityReq, BookResponse.class);
+                .exchange(bookService+BOOK_URL, HttpMethod.POST, entityReq, BookResponse.class);
         log.info(String.valueOf(command));
         log.info(String.valueOf(bookResponse));
         if(Objects.nonNull(bookResponse.getBody()) && Objects.nonNull(bookResponse.getBody().getPnrInfo())

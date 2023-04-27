@@ -5,9 +5,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:127.0.0.1}:5432/postgres?currentSchema=mystays
-    username: postgres
-    password: manager123
+    url: jdbc:postgresql://${HOST_DB:127.0.0.1}:5432/postgres?currentSchema=mystays
+    username: ${db.username}
+    password: ${db.password}
     driverClassName: org.postgresql.Driver
     initialize: true
   jpa:
@@ -23,7 +23,7 @@ spring:
     listener:
       ack-mode: MANUAL_IMMEDIATE
     consumer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: http://${HOST_KAFKA}:9092
       group-id: happystays
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -43,7 +43,7 @@ spring:
       mode: always
 
 config:
-  issuer : http://localhost:9000
+  issuer : http://${HOST_AUTH}localhost}:9000
 eureka:
   instance:
     prefer-ip-address: true
@@ -54,8 +54,8 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: ${eureka.service-url.default}
+      defaultZone: http://${HOST_REGISTRY:localhost}:8761/eureka/
 
 auth:
   server:
-    url: http://localhost:9000
+    url: http://${HOST_AUTH:localhost}:9000
