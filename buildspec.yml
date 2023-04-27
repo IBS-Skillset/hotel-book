@@ -22,7 +22,10 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI_CMD:latest -t $REPOSITORY_URI_QUERY:latest .
+      - cd book.cmd
+      - docker build -t $REPOSITORY_URI_CMD:latest .
+      - cd ../book.query/
+      - docker build -t $REPOSITORY_URI_QUERY:latest .
       - echo Tagging Docker image...
       - docker tag $REPOSITORY_URI_CMD:latest $REPOSITORY_URI_CMD:$IMAGE_TAG
       - docker tag $REPOSITORY_URI_QUERY:latest $REPOSITORY_URI_QUERY:$IMAGE_TAG
@@ -33,8 +36,7 @@ phases:
       - docker push $REPOSITORY_URI_CMD:$IMAGE_TAG
       - docker push $REPOSITORY_URI_QUERY:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"book-cmd","imageUri":"%s"}]' $REPOSITORY_URI_CMD:$IMAGE_TAG > imageDefinitions.json
-      - printf '[{"name":"book-query","imageUri":"%s"}]' $REPOSITORY_URI_QUERY:$IMAGE_TAG > imageDefinitions.json
+      - printf '[{"name":"book-cmd","imageUri":"%s"}, {"name":"book-query","imageUri":"%s"} ]' $REPOSITORY_URI_CMD:$IMAGE_TAG  REPOSITORY_URI_QUERY:$IMAGE_TAG > imageDefinitions.json
       - cat imageDefinitions.json
 artifacts:
   files:
