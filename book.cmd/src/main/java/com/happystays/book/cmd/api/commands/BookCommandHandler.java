@@ -6,6 +6,7 @@ import com.happystays.book.common.dto.responsemodel.BookResponse;
 import com.happystays.cqrs.core.handlers.EventSourcingHandler;
 import com.happystays.cqrs.core.response.BaseResponse;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -25,7 +26,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Service
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BookCommandHandler implements CommandHandler {
 
 
