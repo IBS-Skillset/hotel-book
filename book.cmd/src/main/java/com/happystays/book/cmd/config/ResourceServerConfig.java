@@ -8,7 +8,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class ResourceServerConfig {
-
     @Value("${auth.server.url}")
     private String url;
 
