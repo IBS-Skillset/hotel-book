@@ -11,6 +11,7 @@ spring:
       database: myStays
       username: adminuser
       password: mongopass123
+      authentication-database: admin
   kafka:
     producer:
       bootstrap-servers: http://${HOST_KAFKA}:9092
