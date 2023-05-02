@@ -39,6 +39,7 @@ public class BookCommandHandler implements CommandHandler {
     public BaseResponse handle(BookCommand command) {
         HttpEntity<BookCommand> entityReq = new HttpEntity<>(command, getHeader());
         RestTemplate template = new RestTemplate();
+        log.info("Book service command : ",String.valueOf(command));
         ResponseEntity<BookResponse> bookResponse = template
                 .exchange(bookService+BOOK_URL, HttpMethod.POST, entityReq, BookResponse.class);
         log.info(String.valueOf(command));
