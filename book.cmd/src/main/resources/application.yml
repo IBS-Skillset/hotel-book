@@ -9,8 +9,8 @@ spring:
       host: ${HOST_MONGO}
       port: 27017
       database: myStays
-      username: admin
-      password: password
+      username: adminuser
+      password: mongopass123
   kafka:
     producer:
       bootstrap-servers: http://${HOST_KAFKA}:9092
