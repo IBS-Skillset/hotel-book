@@ -36,5 +36,5 @@ auth:
     url: http://${HOST_AUTH:localhost}:9000
 book:
   service:
-    url: http://${HOST_BOOK_SERVICE:localhost}:9192
+    url: http://${HOST_BOOK_SERVICE:localhost}:8087
 

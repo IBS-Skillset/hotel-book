@@ -28,7 +28,7 @@ public class BookController {
         BookResponse bookResponse = null;
         var id = UUID.randomUUID().toString();
         command.setId(id);
-        log.error("Book Command", command);
+        log.info("Book Command", command);
         try {
              bookResponse = (BookResponse) commandDispatcher.send(command);
         } catch (Exception e) {
