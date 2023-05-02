@@ -5,9 +5,8 @@ import com.happystays.book.cmd.domain.BookAggregate;
 import com.happystays.book.common.dto.responsemodel.BookResponse;
 import com.happystays.cqrs.core.handlers.EventSourcingHandler;
 import com.happystays.cqrs.core.response.BaseResponse;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpEntity;
@@ -26,7 +25,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class BookCommandHandler implements CommandHandler {
 
 
@@ -34,6 +32,11 @@ public class BookCommandHandler implements CommandHandler {
     private String bookService;
 
     private EventSourcingHandler<BookAggregate> eventSourcingHandler;
+
+    @Autowired
+    public BookCommandHandler(EventSourcingHandler<BookAggregate> eventSourcingHandler) {
+        this.eventSourcingHandler = eventSourcingHandler;
+    }
 
     @Override
     public BaseResponse handle(BookCommand command) {
