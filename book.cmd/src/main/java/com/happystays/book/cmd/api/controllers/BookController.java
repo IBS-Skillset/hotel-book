@@ -32,7 +32,7 @@ public class BookController {
         try {
              bookResponse = (BookResponse) commandDispatcher.send(command);
         } catch (Exception e) {
-            log.error("Bad request", e.getMessage());
+            log.error("Bad request", e);
             bookResponse = errorBuilder.errorBuilder(e.getMessage());
 
         }
