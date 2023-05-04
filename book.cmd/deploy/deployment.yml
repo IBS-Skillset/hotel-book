@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotel-book-cmd
+  namespace: beta-app
+  labels:
+    app.kubernetes.io/name: hotel-book-cmd
+spec:
+  replicas: 1
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: hotel-book-cmd
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: hotel-book-cmd
+    spec:
+      containers:
+        - name: hotel-book-cmd-api
+          image: 306472407007.dkr.ecr.ap-south-1.amazonaws.com/ibs-skillset-happystays/book-cmd:7c3c430
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 5000
+          resources:
+            requests:
+              memory: "250Mi"
+              cpu: "200m"
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
+          env:
+            - name: HOST_MONGO
+              value: mongo-service.db-mongo
+            - name: HOST_AUTH
+              value: authorization-server
+            - name: HOST_BOOK_SERVICE
+              value: hotel-book-service
+            - name: HOST_CONFIG
+              value: config-server
+            - name: HOST_REGISTRY
+              value: service-registry
+            - name: HOST_KAFKA
+              value: kafka-service.kafka

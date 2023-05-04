@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotel-book-query
+  namespace: beta-app
+  labels:
+    app.kubernetes.io/name: hotel-book-query
+spec:
+  replicas: 1
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: hotel-book-query
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: hotel-book-query
+    spec:
+      containers:
+        - name: hotel-book-query-api
+          image: 306472407007.dkr.ecr.ap-south-1.amazonaws.com/ibs-skillset-happystays/book-query:37080de
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 9095
+          resources:
+            requests:
+              memory: "250Mi"
+              cpu: "200m"
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
+          env:
+            - name: HOST_DB
+              value: postgres-service.db-system
+            - name: HOST_AUTH
+              value: authorization-server
+            - name: HOST_KAFKA
+              value: kafka-service.kafka
+            - name: HOST_CONFIG
+              value: config-server
+            - name: HOST_REGISTRY
+              value: service-registry
