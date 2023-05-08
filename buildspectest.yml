@@ -2,6 +2,8 @@ version: 0.2
 env:
   parameter-store:
     SECRET_TOKEN: "MY_SECRET_TOKEN"
+    SECRET_USERNAME: "MY_SECRET_USERNAME"
+    SECRET_EMAIL: "MY_SECRET_EMAIL"
 phases:
   install:
     runtime-versions:
@@ -39,7 +41,7 @@ phases:
           git fetch --all
           git reset --hard neworigin/main
           printf "\nhotel-book" >> commitList.txt
-          git add .
+          git add commitList.txt
           git commit -m "Adding hotel-book PR to commitlist ${CODEBUILD_WEBHOOK_TRIGGER}"
           git push neworigin main
         else
