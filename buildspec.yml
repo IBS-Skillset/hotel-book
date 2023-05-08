@@ -9,6 +9,7 @@ phases:
       - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain ibsplc --domain-owner ${AWS_ACCOUNT_ID} --region ${AWS_DEFAULT_REGION} --query authorizationToken --output text`
       - mvn -s settings.xml clean install -DskipTests
       - echo Logging in to Amazon ECR...
+      - echo $AWS_DEFAULT_REGION
       - echo $AWS_ACCOUNT_ID
       - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
       - echo $IMAGE_REPO_NAME
