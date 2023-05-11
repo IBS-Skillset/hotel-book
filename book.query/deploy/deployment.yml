@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: hotel-book-query-api
-          image: 306472407007.dkr.ecr.ap-south-1.amazonaws.com/ibs-skillset-happystays/book-query:69ddca1
+          image: 306472407007.dkr.ecr.ap-south-1.amazonaws.com/ibs-skillset-happystays/book-query:e59456d
           imagePullPolicy: Always
           ports:
             - name: http
